@@ -3,8 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <title>Argus Console</title>
+    <script src="../plugins/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../plugins/bootstrap/bootstrap-4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="../plugins/font-awesome/font-awesome-4.7.0/css/font-awesome.min.css"></script>
+    <script src="../plugins/adminlte/AdminLTE-2.4.5/dist/css/AdminLTE.min.css"></script>
+    <script src="../plugins/adminlte/AdminLTE-2.4.5/bower_components/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../dist/css/console.css">
 </head>
 <body>
+    <div class="wrap">
+        <div class="content-wrap">
+            <div class="box">
+                <div class="col-md-6 column">
+                    <div id="image">
 
+                    </div>
+
+                    <!--<div id="rangeSlider"></div>-->
+                </div>
+                <div class="col-md-6 column"></div>
+            </div>
+        </div>
+    </div>
 </body>
+<script>
+    $.ajax({
+        async: true,
+        beforeSend: function () {
+            $("#image").html('加载中...');
+        },
+        error: function () {
+            alert("error");
+        },
+        type : 'GET' ,
+        url : '',
+        data : {
+        },
+        success: function () {
+            ShowDiv();
+        }
+    });
+    //显示加载数据
+    function ShowDiv() {
+        $("#image").html(' ');
+        var paths = new Array(351);//数组 图片地址
+        var path;
+        for(var i = 0;i<paths.length;i++){
+            if(i<10){
+                path = "../data/LKDS-00001/img_000" + i + "_i.png";
+                paths[i] = path;
+            }
+            if(i>9 && i<100){
+                path = "../data/LKDS-00001/img_00" + i + "_i.png";
+                paths[i] = path;
+            }
+            if(i>99 && i<paths.length){
+                path = "../data/LKDS-00001/img_0" + i + "_i.png";
+                paths[i] = path;
+            }
+        }
+
+        $.each(paths, function (index, item) {
+            //循环获取数据
+            var srcimg = paths[index];
+
+            $("#image").html(
+                    $("#image").html() + "<img alt='413*413' src=" + srcimg + "/>"
+            );
+        });
+        $("#image").show();
+    }
+
+</script>
 </html>

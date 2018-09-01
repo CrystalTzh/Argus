@@ -1,0 +1,10 @@
+#image {
+    /*border:300px;*/
+    position:absolute;
+    z-index:10000;
+    background-color:#F7F9FC;
+    line-height:25px;
+    vertical-align:middle;
+    font-size:11pt;
+    display:none;
+}
