@@ -1,10 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Argus Console</title>
-</head>
-<body>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
 
+    <link rel="stylesheet" type="text/css" href="../dist/css/console.css">
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <div class="content-wrap">
+            <div class="row">
+                <div class="col-md-6" style="height: 1000px">
+                    <div id="image">
+
+                    </div>
+
+                </div>
+                <div class="col-md-6" style="...">
+                    <div id="range-slider"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- ./wrapper -->
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <!--IonRangeSlider-->
+    <script src="../plugins/ion.rangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
+
+    <script type="text/javascript">
+        $.ajax({
+            async: true,
+            beforeSend: function () {
+                $("#image").html('加载中...');
+            },
+            error: function () {
+                alert("error");
+            },
+            type: 'GET',
+            url: '',
+            data: {},
+            success: function () {
+                ShowDiv();
+            }
+        });
+        //显示加载数据
+        function ShowDiv() {
+            $("#image").html(' ');
+            var paths = new Array(351); //数组 图片地址
+            var path;
+            for (var i = 0; i < paths.length; i++) {
+                if (i < 10) {
+                    path = "../data/LKDS-00001/img_000" + i + "_i.png";
+                    paths[i] = path;
+                }
+                if (i > 9 && i < 100) {
+                    path = "../data/LKDS-00001/img_00" + i + "_i.png";
+                    paths[i] = path;
+                }
+                if (i > 99 && i < paths.length) {
+                    path = "../data/LKDS-00001/img_0" + i + "_i.png";
+                    paths[i] = path;
+                }
+            }
+
+            $.each(paths, function (index, item) {
+                //循环获取数据
+                var srcimg = paths[index];
+
+                $("#image").html(
+                    $("#image").html() + "<img style='width: 413px; height: 413px' alt='413*413' src='" + srcimg + "' />"
+                );
+            });
+            $("#image").show();
+        };
+        $("#range-slider").ionRangeSlider({
+            min: 0,
+            max: 351,
+//            from: (351 - config.THRESHOLD_NODE),
+            from: 0,
+            type: 'single',
+            step: 1
+//            postfix: '',
+//            prettify: false,
+//            hasGrid: true,
+//            onFinish: function (obj) {
+//                config.THRESHOLD_NODE = 100 - obj.fromNumber;
+//
+//                config.DATA_SOURCE.operation = "node";
+//                config.HIDDEN_LEGEND = chart.getOption().legend[0].selected;
+//                chart.showLoading();
+//
+//                var ds = generate_dataset(config.DATA_SOURCE);
+//                var option = get_option(ds);
+//                bind_select2(ds, $("#ddl-search"), config.DOMAIN);
+//
+//                chart.hideLoading();
+//
+//                if (option && typeof option === "object") {
+//                    chart.setOption(option, true);
+//                }
+//            }
+        });
+
+    </script>
 </body>
+
 </html>
