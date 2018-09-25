@@ -1,45 +1,36 @@
-$.ajax({
-    async: true,
-    beforeSend: function () {
-        $("#image").html('加载中...');
-    },
-    error: function () {
-        alert("error");
-    },
-    type: 'GET',
-    url: '',
-    data: {},
-    success: function () {
-        ShowDiv();
-    }
-});
-//显示加载数据
-function ShowDiv() {
-    $("#image").html(' ');
-    var paths = new Array(351); //数组 图片地址
-    var path;
-    for (var i = 0; i < paths.length; i++) {
-        if (i < 10) {
-            path = "../data/LKDS-00001/img_000" + i + "_i.png";
-            paths[i] = path;
-        }
-        if (i > 9 && i < 100) {
-            path = "../data/LKDS-00001/img_00" + i + "_i.png";
-            paths[i] = path;
-        }
-        if (i > 99 && i < paths.length) {
-            path = "../data/LKDS-00001/img_0" + i + "_i.png";
-            paths[i] = path;
-        }
-    }
+$(function () {
+    $.get("../data/LKDS-00001/meta_data.json", function (d, status) {
+        if (status === "success" && d != null) {
+            console.log(d);
+            var txt_dicom = [];
 
-    $.each(paths, function (index, item) {
-        //循环获取数据
-        var srcimg = paths[index];
+            if (d.Dicom) {
+                txt_dicom.push(
+                    '<p>{0}</p>'.format(d.Dicom.Manufactory),
+                    '<p>{0}</p>'.format(d.Dicom.Device),
+                    '<p>{0}</p>'.format(d.Dicom.ImageDate),
+                    '<p>{0}</p>'.format(d.Dicom.Spacing)
+                );
+            }
 
-        $("#image").html(
-            $("#image").html() + "<img style='width: 413px; height: 413px' alt='413*413' src='" + srcimg + "' />"
-        );
+            $("#pnl-image").find("#meta-data").html(txt_dicom.join(''));
+        }
     });
-    $("#image").show();
-}
+
+    // 413*413
+    // 1292
+
+    $("#container img").mousemove(function (e) {
+        var img_origin = $(this).offset();
+        var img_x = Math.round(img_origin.left, 0);
+        var img_y = Math.round(img_origin.top, 0);
+        var img_w = Math.round($(this).width());
+        var img_h = Math.round($(this).height());
+
+        var scale_x = Math.round((e.pageX - img_x) * 413 / img_w);
+        var scale_y = Math.round((e.pageY - img_y) * 413 / img_h);
+
+        $("#pnl-image").find("#pos-info").html("X Axis : " + scale_x  + " Y Axis : " + scale_y);
+
+    });
+});
