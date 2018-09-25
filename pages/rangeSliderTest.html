@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Argus Console</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+
+    <!-- Ion Slider -->
+    <link rel="stylesheet" href="../plugins/ionslider/ion.rangeSlider.css">
+
+</head>
+
+<body class="hold-transition skin-black">
+    <div class="wrapper">
+        <div class="content-wrapper row">
+            <div class="col-lg-6" style="height: 1000px">
+
+                <div style="height: 100px; border: 1px solid red">
+                    <input id="range-slide" type="text" value="" style="height: 100px; border: 1px solid green">
+                </div>
+            </div>
+            <div class="col-lg-6"></div>
+        </div>
+    </div>
+    <!-- ./wrapper -->
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.min.js"></script>
+    <!-- Ion Slider -->
+    <script src="../plugins/ionslider/ion.rangeSlider.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#range-slide").ionRangeSlider({
+                type: "double",
+                min: 0,
+                max: 100,
+                from: 30,
+                to: 70,
+                keyboard: true // true by default
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+{
+  "Dicom":{
+    "Manufactory":"xxx",
+    "Device": "xxx",
+    "ImageDate": "20180926",
+    "Spacing": "2"
+  }
+
+}
