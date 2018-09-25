@@ -17,18 +17,16 @@
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         <div class="content-wrap">
-            <div class="row">
-                <div class="col-md-6" style="height: 1000px">
+            <div class="box">
+                <div class="col-md-6 column" style="height: 1000px">
                     <div id="image">
 
                     </div>
 
+                    <!--<div id="rangeSlider"></div>-->
                 </div>
-                <div class="col-md-6" style="...">
-                    <div id="range-slider"></div>
-                </div>
+                <div class="col-md-6 column"></div>
             </div>
-
         </div>
     </div>
     <!-- ./wrapper -->
@@ -39,8 +37,6 @@
     <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../dist/js/adminlte.min.js"></script>
-    <!--IonRangeSlider-->
-    <script src="../plugins/ion.rangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
 
     <script type="text/javascript">
         $.ajax({
@@ -87,36 +83,7 @@
                 );
             });
             $("#image").show();
-        };
-        $("#range-slider").ionRangeSlider({
-            min: 0,
-            max: 351,
-//            from: (351 - config.THRESHOLD_NODE),
-            from: 0,
-            type: 'single',
-            step: 1
-//            postfix: '',
-//            prettify: false,
-//            hasGrid: true,
-//            onFinish: function (obj) {
-//                config.THRESHOLD_NODE = 100 - obj.fromNumber;
-//
-//                config.DATA_SOURCE.operation = "node";
-//                config.HIDDEN_LEGEND = chart.getOption().legend[0].selected;
-//                chart.showLoading();
-//
-//                var ds = generate_dataset(config.DATA_SOURCE);
-//                var option = get_option(ds);
-//                bind_select2(ds, $("#ddl-search"), config.DOMAIN);
-//
-//                chart.hideLoading();
-//
-//                if (option && typeof option === "object") {
-//                    chart.setOption(option, true);
-//                }
-//            }
-        });
-
+        }
     </script>
 </body>
 
